@@ -4,7 +4,6 @@ const path = require('path');
 const crypto = require('crypto');
 const {WebSocketServer,WebSocket}=require('ws');
 const html=fs.readFileSync(path.join(__dirname,'index.html'));
-const html=fs.readFileSync(path.join(__dirname,'public','index.html'));
 const server=http.createServer((req,res)=>{if(req.url==='/health'){res.writeHead(200);return res.end('ok')}if(req.url==='/'||req.url.startsWith('/?')){res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});return res.end(html)}res.writeHead(404);res.end('Not found')});
 const wss=new WebSocketServer({server});
 function send(ws,obj){if(ws&&ws.readyState===WebSocket.OPEN)ws.send(JSON.stringify(obj))}
